@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* 自定义样式 */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
@@ -57,21 +56,6 @@
         </div>
     </section>
 
-    <!-- 文章部分 -->
-    <section id="posts" class="container mx-auto my-12 p-4">
-        <h2 class="text-3xl font-bold text-center mb-8">最新文章</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- 文章卡片 -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <img src="https://picsum.photos/500/300" alt="旅行照片" class="w-full h-48 object-cover mb-4">
-                <h3 class="text-xl font-semibold mb-2">夏日的海滩之旅</h3>
-                <p>这个夏天，我去了海滩，享受了阳光与沙滩。这里是我旅行的点滴，充满了笑声与欢乐。</p>
-                <a href="#" class="text-blue-500 mt-4 inline-block">阅读更多</a>
-            </div>
-            <!-- 其他文章卡片同上 -->
-        </div>
-    </section>
-
     <!-- 音乐播放器部分 -->
     <section id="music" class="bg-gray-100 py-12">
         <h2 class="text-3xl font-bold text-center mb-8">音乐播放器</h2>
@@ -89,67 +73,88 @@
             <h3 class="mt-6 text-xl font-semibold">默认播放音频 (GitHub Releases)</h3>
             <div class="audio-container">
                 <audio id="github-audio-player" controls>
-                    <source src="https://github.com/junchao321/junchao321.github.io/releases/download/music_v1.0/cyberlume.-.Bloom.Once.for.You.mp3" type="audio/mp3">
+                    <source src="https://github.com/your-username/your-repository/releases/download/v1.0/song.mp3" type="audio/mp3">
                     您的浏览器不支持音频元素。
                 </audio>
             </div>
-        </div>
-    </section>
 
-    <!-- 图片和视频部分 -->
-    <section id="gallery" class="container mx-auto my-12 p-4">
-        <h2 class="text-3xl font-bold text-center mb-8">旅行风景</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 图片卡片 -->
-            <div class="relative">
-                <img src="https://picsum.photos/500/300" alt="风景图片" class="w-full h-48 object-cover">
-                <div class="absolute top-0 left-0 w-full h-full bg-black/50 text-white flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity">
-                    <i class="fa fa-search-plus text-4xl"></i>
-                </div>
+            <!-- 播放列表控制 -->
+            <div class="flex justify-center mt-8 space-x-4">
+                <button id="prev" class="bg-blue-500 text-white p-2 rounded-full">
+                    <i class="fa fa-step-backward"></i>
+                </button>
+                <button id="play-pause" class="bg-blue-500 text-white p-2 rounded-full">
+                    <i class="fa fa-play"></i>
+                </button>
+                <button id="next" class="bg-blue-500 text-white p-2 rounded-full">
+                    <i class="fa fa-step-forward"></i>
+                </button>
             </div>
-            <!-- 其他图片卡片同上 -->
         </div>
     </section>
-
-    <!-- 评论区 -->
-    <section id="comments" class="bg-white py-12">
-        <h2 class="text-3xl font-bold text-center mb-8">留言区</h2>
-        <div class="container mx-auto max-w-2xl">
-            <form id="comment-form">
-                <div class="mb-6">
-                    <label for="name" class="block text-sm font-medium text-gray-700">昵称</label>
-                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-md" placeholder="请输入你的昵称" required>
-                </div>
-                <div class="mb-6">
-                    <label for="comment" class="block text-sm font-medium text-gray-700">评论内容</label>
-                    <textarea id="comment" class="w-full px-4 py-2 border rounded-md" placeholder="分享你的想法..." required></textarea>
-                </div>
-                <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md">提交评论</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2025 我的旅行博客 | Designed by Your Name</p>
-        </div>
-    </footer>
 
     <script>
-        // 获取文件输入框和音频播放器元素
-        const fileInput = document.getElementById('file-input');
-        const audioPlayer = document.getElementById('audio-player');
-        const githubAudioPlayer = document.getElementById('github-audio-player');
+        // 音乐播放列表
+        const songs = [
+            "https://github.com/junchao321/junchao321.github.io/releases/download/music_v1.0/cyberlume.-.Bloom.Once.for.You.mp3", // 第一首歌链接
+            "https://github.com/junchao321/junchao321.github.io/releases/download/music_v1.0/cyberlume.-.Her.Song.Alone.mp3", // 第二首歌链接
+            "https://github.com/your-username/your-repository/releases/download/v1.0/song3.mp3"  // 第三首歌链接
+        ];
+        
+        let currentSongIndex = 0;  // 当前播放歌曲的索引
+        const audioPlayer = document.getElementById("audio-player");
+        const playPauseButton = document.getElementById("play-pause");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
 
-        // 监听文件选择事件
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0]; // 获取选中的文件
+        // 加载当前歌曲
+        function loadSong(index) {
+            audioPlayer.src = songs[index];
+            audioPlayer.play();
+            playPauseButton.innerHTML = "<i class='fa fa-pause'></i>"; // 播放按钮改为暂停
+        }
+
+        // 播放/暂停按钮
+        playPauseButton.addEventListener("click", () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
+            } else {
+                audioPlayer.pause();
+                playPauseButton.innerHTML = "<i class='fa fa-play'></i>";
+            }
+        });
+
+        // 上一首按钮
+        prevButton.addEventListener("click", () => {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;  // 循环到上一首
+            loadSong(currentSongIndex);
+        });
+
+        // 下一首按钮
+        nextButton.addEventListener("click", () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;  // 循环到下一首
+            loadSong(currentSongIndex);
+        });
+
+        // 当歌曲播放完时，自动播放下一首
+        audioPlayer.addEventListener("ended", () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;  // 循环到下一首
+            loadSong(currentSongIndex);
+        });
+
+        // 初始化播放
+        loadSong(currentSongIndex);
+
+        // 处理上传本地音频文件
+        const fileInput = document.getElementById("file-input");
+        fileInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
             if (file) {
-                const objectURL = URL.createObjectURL(file); // 创建一个指向文件的 URL
-                audioPlayer.src = objectURL; // 将音频播放器的 src 设置为文件的 URL
-                audioPlayer.play(); // 播放上传的文件
-                githubAudioPlayer.pause(); // 暂停默认播放的音频
+                const objectURL = URL.createObjectURL(file); // 创建本地文件 URL
+                audioPlayer.src = objectURL;
+                audioPlayer.play();
+                playPauseButton.innerHTML = "<i class='fa fa-pause'></i>";
             }
         });
     </script>
