@@ -28,6 +28,10 @@
             font-size: 3em;
             font-weight: bold;
         }
+        .audio-container {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -68,14 +72,27 @@
         </div>
     </section>
 
-    <!-- 音乐播放器 -->
+    <!-- 音乐播放器部分 -->
     <section id="music" class="bg-gray-100 py-12">
         <h2 class="text-3xl font-bold text-center mb-8">音乐播放器</h2>
+        
         <div class="container mx-auto text-center">
-            <audio controls>
-                <source src="https://github.com/junchao321/junchao321.github.io/releases/download/music_v1.0/cyberlume.-.Bloom.Once.for.You.mp3" type="audio/mp3">
-                您的浏览器不支持音频元素。
-            </audio>
+            <!-- 上传本地音频文件 -->
+            <input type="file" id="file-input" accept="audio/*" class="mb-4 p-2 border rounded-md text-lg">
+            <div class="audio-container">
+                <audio id="audio-player" controls>
+                    您的浏览器不支持音频元素。
+                </audio>
+            </div>
+
+            <!-- 默认播放来自 GitHub Releases 的音频 -->
+            <h3 class="mt-6 text-xl font-semibold">默认播放音频 (GitHub Releases)</h3>
+            <div class="audio-container">
+                <audio id="github-audio-player" controls>
+                    <source src="https://github.com/your-username/your-repository/releases/download/v1.0/song.mp3" type="audio/mp3">
+                    您的浏览器不支持音频元素。
+                </audio>
+            </div>
         </div>
     </section>
 
@@ -118,6 +135,24 @@
             <p>&copy; 2025 我的旅行博客 | Designed by Your Name</p>
         </div>
     </footer>
+
+    <script>
+        // 获取文件输入框和音频播放器元素
+        const fileInput = document.getElementById('file-input');
+        const audioPlayer = document.getElementById('audio-player');
+        const githubAudioPlayer = document.getElementById('github-audio-player');
+
+        // 监听文件选择事件
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0]; // 获取选中的文件
+            if (file) {
+                const objectURL = URL.createObjectURL(file); // 创建一个指向文件的 URL
+                audioPlayer.src = objectURL; // 将音频播放器的 src 设置为文件的 URL
+                audioPlayer.play(); // 播放上传的文件
+                githubAudioPlayer.pause(); // 暂停默认播放的音频
+            }
+        });
+    </script>
 
 </body>
 </html>
