@@ -1,0 +1,39 @@
+#--------------------------------------
+# Jekyll 全局配置
+#--------------------------------------
+title: "我的旅行与音乐博客"       # 网站标题
+description: "记录旅行见闻、分享音乐与视频"     # 网站描述
+baseurl: ""                   # 如果是 user.github.io，则留空
+url: "https://junchao321.github.io"   # 替换为你的 GitHub Pages 地址
+author:
+  name: "AlanTang"
+  email: "AlanTang@hotmail.com"
+
+# Build settings
+theme: minima                # 这里使用 minima 主题做基础，但我们会覆盖大部分样式
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+
+# 分页与目录（可选）
+paginate: 5
+paginate_path: "/page/:num/"
+
+# 插件（如果托管在 GitHub Pages，需使用官方支持的插件）
+plugins:
+  - jekyll-feed             # 站点自动生成 RSS
+  - jekyll-sitemap          # 站点 sitemap
+  - jekyll-seo-tag          # SEO 优化标签
+  - jekyll-archives         # 生成归档页面
+
+# 评论系统（Utterances）配置示例
+utterances:
+  repo: "username/username.github.io"    # 你的 GitHub Repo，用于 Utterances 授权评论
+  issue_term: "pathname"                # 用文章路径对应 Issue
+  label: "评论"                         # 评论 Issue 默认标签
+  theme: "github-light"                 # Utterances 主题，可选 dark / light / etc.
+
+# 自定义变量示例
+social:
+  github: "https://github.com/junchao321"
+  twitter: "https://twitter.com/junchao321"
+  email: "AlanTang@hotmail.com"
