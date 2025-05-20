@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Summer Breeze",
+    "artist": "Seeb",
+    "url": "https://example.com/music/summer-breeze.mp3",
+    "cover": "/images/music/summer-breeze.jpg"
+  },
+  {
+    "title": "Ocean Eyes",
+    "artist": "Billie Eilish",
+    "url": "https://example.com/music/ocean-eyes.mp3",
+    "cover": "/images/music/ocean-eyes.jpg"
+  },
+  {
+    "title": "Nothing Else Matters",
+    "artist": "Metallica",
+    "url": "https://example.com/music/nothing-else-matters.mp3",
+    "cover": "/images/music/nothing-else-matters.jpg"
+  }
+]
