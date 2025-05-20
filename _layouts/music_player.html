@@ -1,0 +1,22 @@
+<div id="music-player" class="music-player hidden">
+  <div class="player-header">
+    <span>音乐播放器</span>
+    <button id="player-close" class="player-close">✖</button>
+  </div>
+  <div class="player-body">
+    <audio id="audio" preload="metadata"></audio>
+    <!-- 歌词／进度条区域 -->
+    <div class="controls">
+      <button id="prev-btn">⏮</button>
+      <button id="play-btn">▶️</button>
+      <button id="next-btn">⏭</button>
+      <span id="current-time">00:00</span> /
+      <span id="duration">00:00</span>
+      <input type="range" id="seek-bar" value="0" min="0" step="1" />
+    </div>
+    <!-- 播放列表 -->
+    <ul id="playlist" class="playlist">
+      <!-- 由 JS 动态生成 li 项 -->
+    </ul>
+  </div>
+</div>
