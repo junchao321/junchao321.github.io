@@ -1,20 +1,23 @@
 [
   {
-    "title": "Summer Breeze",
-    "artist": "Seeb",
-    "url": "https://example.com/music/summer-breeze.mp3",
-    "cover": "/images/music/summer-breeze.jpg"
+    "title": "Track One",
+    "artist": "Artist A",
+    "url": "/assets/music/track1.mp3",
+    "cover": "/images/music/track1-cover.jpg",
+    "lyrics": "/assets/music/track1.lrc"
   },
   {
-    "title": "Ocean Eyes",
-    "artist": "Billie Eilish",
-    "url": "https://example.com/music/ocean-eyes.mp3",
-    "cover": "/images/music/ocean-eyes.jpg"
+    "title": "Track Two",
+    "artist": "Artist B",
+    "url": "/assets/music/track2.ogg",
+    "cover": "/images/music/track2-cover.jpg",
+    "lyrics": "/assets/music/track2.lrc"
   },
   {
-    "title": "Nothing Else Matters",
-    "artist": "Metallica",
-    "url": "https://example.com/music/nothing-else-matters.mp3",
-    "cover": "/images/music/nothing-else-matters.jpg"
+    "title": "Track Three (本地 WAV)",
+    "artist": "Artist C",
+    "url": "/assets/music/track3.wav",
+    "cover": "/images/music/track3-cover.jpg"
+    /* 可选：如果没有歌词，可以省略 lyrics 字段 */
   }
 ]
