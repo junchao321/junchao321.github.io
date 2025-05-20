@@ -1,0 +1,47 @@
+<!-- BEGIN: 定义音乐播放器整体结构 -->
+<div id="music-player" class="music-player hidden">
+  <!-- 顶部标题栏：含关闭按钮 -->
+  <div class="player-header">
+    <span>音乐播放器</span>
+    <button id="player-close" class="player-close">✖</button>
+  </div>
+  <!-- 播放器主体：封面、进度、控制、歌词 -->
+  <div class="player-body">
+    <!-- 如果有封面，可显示；否则默认隐藏 -->
+    <div class="cover-container">
+      <img id="cover-img" src="" alt="封面" class="cover-img hidden" />
+    </div>
+
+    <!-- Audio 元素，隐藏原生控件 -->
+    <audio id="audio" preload="metadata"></audio>
+
+    <!-- 进度与时长显示 -->
+    <div class="time-container">
+      <span id="current-time">00:00</span>
+      <input type="range" id="seek-bar" value="0" min="0" step="1" />
+      <span id="duration">00:00</span>
+    </div>
+
+    <!-- 播放控制区：上一曲、播放/暂停、下一曲 -->
+    <div class="controls">
+      <button id="prev-btn" title="上一曲">⏮</button>
+      <button id="play-btn" title="播放/暂停">▶️</button>
+      <button id="next-btn" title="下一曲">⏭</button>
+    </div>
+
+    <!-- 音量控制区：滑块 + 静音按钮 -->
+    <div class="volume-container">
+      <button id="mute-btn" title="静音/取消静音">🔊</button>
+      <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1" />
+    </div>
+
+    <!-- 播放列表：点击可选不同曲目 -->
+    <ul id="playlist" class="playlist"></ul>
+
+    <!-- 歌词显示区：可滚动，高亮当前行 -->
+    <div class="lyrics-container">
+      <ul id="lyrics-list" class="lyrics-list"></ul>
+    </div>
+  </div>
+</div>
+<!-- END: 音乐播放器结构 -->
