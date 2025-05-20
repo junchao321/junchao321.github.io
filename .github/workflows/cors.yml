@@ -1,0 +1,23 @@
+name: CORS Configuration
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Add CORS headers
+        run: |
+          echo 'Access-Control-Allow-Origin: *' > .nojekyll
+          echo 'Access-Control-Allow-Methods: GET' >> .nojekyll
+          echo 'Access-Control-Allow-Headers: Content-Type' >> .nojekyll
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
