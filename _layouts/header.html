@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="logo">
+    <a href="{{ site.baseurl | prepend: site.url }}">{{ site.title }}</a>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="{{ '/' | relative_url }}">首页</a></li>
+      <li><a href="{{ '/about' | relative_url }}">关于</a></li>
+      <li><a href="{{ '/archives' | relative_url }}">归档</a></li>
+      <li><a href="{{ '/contact' | relative_url }}">联系</a></li>
+    </ul>
+  </nav>
+
+  <!-- 音乐播放器按钮，点击展开播放器 -->
+  <div id="music-toggle" class="music-toggle">
+    🎵 播放音乐
+  </div>
+  {% include music_player.html %}
+</header>
