@@ -62,10 +62,20 @@
                 <a href="#gallery" class="font-medium hover:text-primary transition-colors">相册</a>
                 <a href="#comments" class="font-medium hover:text-primary transition-colors">留言</a>
             </div>
-            <button class="md:hidden text-dark text-xl">
+            <button id="mobile-menu-button" class="md:hidden text-dark text-xl">
                 <i class="fa fa-bars"></i>
             </button>
         </nav>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#" class="font-medium hover:text-primary transition-colors py-2">首页</a>
+                <a href="#posts" class="font-medium hover:text-primary transition-colors py-2">文章</a>
+                <a href="#music" class="font-medium hover:text-primary transition-colors py-2">音乐</a>
+                <a href="#gallery" class="font-medium hover:text-primary transition-colors py-2">相册</a>
+                <a href="#comments" class="font-medium hover:text-primary transition-colors py-2">留言</a>
+            </div>
+        </div>
     </header>
 
     <main class="container mx-auto px-4 py-8">
@@ -180,8 +190,9 @@
                                     <span id="current-time">0:00</span>
                                     <span id="duration">3:45</span>
                                 </div>
-                                <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
-                                    <div id="progress-bar" class="h-full bg-primary w-0"></div>
+                                <div class="h-1 bg-gray-200 rounded-full overflow-hidden cursor-pointer" id="progress-container">
+                                    <div id="progress-bar" class="h-full bg-primary w-0 transition-all"></div>
+                                    <div id="progress-handle" class="absolute h-3 w-3 bg-white rounded-full shadow-md transform -translate-y-1/2 -translate-x-1/2 hidden md:block" style="left: 0%; top: 50%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -209,8 +220,9 @@
                                     <i class="fa fa-volume-up"></i>
                                 </button>
                             </div>
-                            <div class="h-1 bg-gray-200 rounded-full w-full">
-                                <div id="volume-bar" class="h-full bg-gray-400 w-3/4 rounded-full"></div>
+                            <div class="h-1 bg-gray-200 rounded-full w-full cursor-pointer" id="volume-container">
+                                <div id="volume-bar" class="h-full bg-gray-400 w-3/4 rounded-full transition-all"></div>
+                                <div id="volume-handle" class="absolute h-3 w-3 bg-white rounded-full shadow-md transform -translate-y-1/2 -translate-x-1/2 hidden md:block" style="left: 75%; top: 50%;"></div>
                             </div>
                         </div>
                     </div>
@@ -219,7 +231,7 @@
                 <div class="border-t border-gray-100 p-4">
                     <h4 class="font-medium mb-3">播放列表</h4>
                     <ul id="playlist" class="space-y-2">
-                        <li class="p-2 rounded-lg bg-primary/5 flex items-center cursor-pointer hover:bg-primary/10 transition-colors">
+                        <li class="p-2 rounded-lg bg-primary/5 flex items-center cursor-pointer hover:bg-primary/10 transition-colors" data-index="0">
                             <span class="mr-3 text-primary">1</span>
                             <div class="flex-1">
                                 <span class="font-medium">Summer Memories</span>
@@ -227,7 +239,7 @@
                             </div>
                             <span class="text-sm text-gray-500">3:45</span>
                         </li>
-                        <li class="p-2 rounded-lg flex items-center cursor-pointer hover:bg-primary/10 transition-colors">
+                        <li class="p-2 rounded-lg flex items-center cursor-pointer hover:bg-primary/10 transition-colors" data-index="1">
                             <span class="mr-3 text-gray-400">2</span>
                             <div class="flex-1">
                                 <span class="font-medium">Ocean Waves</span>
@@ -235,7 +247,7 @@
                             </div>
                             <span class="text-sm text-gray-500">4:20</span>
                         </li>
-                        <li class="p-2 rounded-lg flex items-center cursor-pointer hover:bg-primary/10 transition-colors">
+                        <li class="p-2 rounded-lg flex items-center cursor-pointer hover:bg-primary/10 transition-colors" data-index="2">
                             <span class="mr-3 text-gray-400">3</span>
                             <div class="flex-1">
                                 <span class="font-medium">Morning Coffee</span>
@@ -336,7 +348,7 @@
                 <form id="comment-form">
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">昵称</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入你的昵称">
+                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入你的昵称" required>
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱 (选填)</label>
@@ -344,7 +356,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="comment" class="block text-sm font-medium text-gray-700 mb-1">评论内容</label>
-                        <textarea id="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="分享你的想法..."></textarea>
+                        <textarea id="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="分享你的想法..." required></textarea>
                     </div>
                     <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-6 rounded-lg transition-all transform hover:scale-105">
                         发表评论
@@ -462,7 +474,7 @@
                         订阅我的博客，获取最新的音乐推荐和生活分享。
                     </p>
                     <form class="flex">
-                        <input type="email" placeholder="输入你的邮箱" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">
+                        <input type="email" placeholder="输入你的邮箱" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark" required>
                         <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg transition-colors">
                             订阅
                         </button>
@@ -489,6 +501,48 @@
             }
         });
 
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // 考虑导航栏高度
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         // 音乐播放器功能
         document.addEventListener('DOMContentLoaded', function() {
             // 定义音乐列表
@@ -498,7 +552,7 @@
                     artist: "Music For Life",
                     duration: "3:45",
                     cover: "https://picsum.photos/id/1074/600/600",
-                    src: "https://example.com/music/summer-memories.mp3" // 替换为实际音频链接
+                    src: "https://github.com/junchao321/junchao321.github.io/releases/download/music_v1.0/cyberlume.-.Bloom.Once.for.You.mp3" // 替换为实际音频链接
                 },
                 {
                     title: "Ocean Waves",
@@ -521,7 +575,11 @@
             const playPauseBtn = document.getElementById('play-pause');
             const muteBtn = document.getElementById('mute');
             const progressBar = document.getElementById('progress-bar');
+            const progressHandle = document.getElementById('progress-handle');
+            const progressContainer = document.getElementById('progress-container');
             const volumeBar = document.getElementById('volume-bar');
+            const volumeHandle = document.getElementById('volume-handle');
+            const volumeContainer = document.getElementById('volume-container');
             const playlistItems = document.querySelectorAll('#playlist li');
             const currentTimeEl = document.getElementById('current-time');
             const durationEl = document.getElementById('duration');
@@ -537,6 +595,8 @@
             let currentSongIndex = 0;
             let isShuffle = false;
             let repeatMode = 0; // 0: 不重复, 1: 单曲循环, 2: 列表循环
+            let isDraggingProgress = false;
+            let isDraggingVolume = false;
             
             // 更新歌曲信息
             function updateSongInfo() {
@@ -554,3 +614,120 @@
                         const indexSpan = item.querySelector('span:first-child');
                         indexSpan.classList.remove('text-gray-400');
                         indexSpan.classList.add('text-primary');
+                    } else {
+                        item.classList.remove('bg-primary/5');
+                        const indexSpan = item.querySelector('span:first-child');
+                        indexSpan.classList.remove('text-primary');
+                        indexSpan.classList.add('text-gray-400');
+                    }
+                });
+            }
+            
+            // 格式化时间
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            }
+            
+            // 更新进度条
+            function updateProgress() {
+                if (!isDraggingProgress) {
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    progressBar.style.width = `${percent}%`;
+                    progressHandle.style.left = `${percent}%`;
+                    currentTimeEl.textContent = formatTime(audio.currentTime);
+                }
+            }
+            
+            // 更新音量
+            function updateVolume() {
+                if (!isDraggingVolume) {
+                    audio.volume = volumeBar.offsetWidth / volumeContainer.offsetWidth;
+                    if (audio.volume === 0) {
+                        muteBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+                    } else if (audio.volume < 0.5) {
+                        muteBtn.innerHTML = '<i class="fa fa-volume-down"></i>';
+                    } else {
+                        muteBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
+                    }
+                }
+            }
+            
+            // 播放/暂停
+            playPauseBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="fa fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="fa fa-play"></i>';
+                }
+            });
+            
+            // 静音
+            muteBtn.addEventListener('click', function() {
+                if (audio.muted) {
+                    audio.muted = false;
+                    volumeBar.style.width = `${audio.volume * 100}%`;
+                    volumeHandle.style.left = `${audio.volume * 100}%`;
+                    updateVolume();
+                } else {
+                    audio.muted = true;
+                    volumeBar.style.width = '0%';
+                    volumeHandle.style.left = '0%';
+                    muteBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+                }
+            });
+            
+            // 进度条点击
+            progressContainer.addEventListener('click', function(e) {
+                const percent = (e.offsetX / progressContainer.offsetWidth);
+                audio.currentTime = percent * audio.duration;
+                updateProgress();
+            });
+            
+            // 进度条拖拽
+            progressContainer.addEventListener('mousedown', function() {
+                isDraggingProgress = true;
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDraggingProgress) {
+                    const containerRect = progressContainer.getBoundingClientRect();
+                    let percent = (e.clientX - containerRect.left) / containerRect.width;
+                    percent = Math.max(0, Math.min(1, percent));
+                    
+                    progressBar.style.width = `${percent * 100}%`;
+                    progressHandle.style.left = `${percent * 100}%`;
+                    currentTimeEl.textContent = formatTime(percent * audio.duration);
+                }
+            });
+            
+            document.addEventListener('mouseup', function(e) {
+                if (isDraggingProgress) {
+                    isDraggingProgress = false;
+                    const containerRect = progressContainer.getBoundingClientRect();
+                    let percent = (e.clientX - containerRect.left) / containerRect.width;
+                    percent = Math.max(0, Math.min(1, percent));
+                    
+                    audio.currentTime = percent * audio.duration;
+                    updateProgress();
+                }
+            });
+            
+            // 音量条点击
+            volumeContainer.addEventListener('click', function(e) {
+                const percent = (e.offsetX / volumeContainer.offsetWidth);
+                audio.volume = percent;
+                volumeBar.style.width = `${percent * 100}%`;
+                volumeHandle.style.left = `${percent * 100}%`;
+                updateVolume();
+            });
+            
+            // 音量条拖拽
+            volumeContainer.addEventListener('mousedown', function() {
+                isDraggingVolume = true;
+            });
+            
+            document.addEventListener('mousemove', function(e) {
