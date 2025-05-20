@@ -3,25 +3,56 @@ layout: default
 title: 首页
 ---
 
-<!-- 旅行风景轮播图 -->
+<!-- —— 旅行风景轮播图 —— -->
 <section class="hero-slider">
   <div class="slides">
     <div class="slide">
-      <img src="{{ '/images/travel1.jpg' | relative_url }}" alt="旅行风景1" />
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="海边日出" />
       <div class="caption">海边日出</div>
     </div>
     <div class="slide">
-      <img src="{{ '/images/travel2.jpg' | relative_url }}" alt="旅行风景2" />
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80" alt="山间小溪" />
       <div class="caption">山间小溪</div>
     </div>
     <div class="slide">
-      <img src="{{ '/images/travel3.jpg' | relative_url }}" alt="旅行风景3" />
+      <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?auto=format&fit=crop&w=1200&q=80" alt="城市夜景" />
       <div class="caption">城市夜景</div>
     </div>
   </div>
 </section>
 
-<!-- 最新文章列表 -->
+<!-- —— 旅行风景图片画廊 —— -->
+<section class="photo-gallery">
+  <h2>旅行风景图片画廊</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1538680054584-d9a068ccf1f8?auto=format&fit=crop&w=600&q=80" alt="湖畔小屋" />
+      <p>湖畔小屋</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="森林小径" />
+      <p>森林小径</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="沙漠日落" />
+      <p>沙漠日落</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="雪山" />
+      <p>雪山</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1519918723680-e7bd4eb770dc?auto=format&fit=crop&w=600&q=80" alt="海滩椰树" />
+      <p>海滩椰树</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1529921879218-272c4b130dfb?auto=format&fit=crop&w=600&q=80" alt="峡谷" />
+      <p>峡谷</p>
+    </div>
+  </div>
+</section>
+
+<!-- —— 最新文章列表 —— -->
 <section class="latest-posts">
   <h2>最新文章</h2>
   <ul>
@@ -35,19 +66,51 @@ title: 首页
   <a href="{{ '/archives' | relative_url }}" class="more">更多归档 »</a>
 </section>
 
-<!-- 视频示例区域 -->
-<section class="video-sample">
-  <h2>旅行视频示例</h2>
-  <div class="video-container">
-    <!-- 如果你有自己上传到 YouTube 或 Bilibili 的视频链接，可以直接替换下面 iframe src -->
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/ScMzIvxBSi4"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+<!-- —— 旅行视频展示区 —— -->
+<section class="video-gallery">
+  <h2>旅行视频展示</h2>
+  <div class="video-grid">
+    <!-- YouTube 示例1 -->
+    <div class="video-item">
+      <iframe
+        width="100%"
+        height="200"
+        src="https://www.youtube.com/embed/k6EAj0c4s5k"
+        title="Travel Vlog 1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <p>【旅行 Vlog】海岛探险</p>
+    </div>
+    <!-- YouTube 示例2 -->
+    <div class="video-item">
+      <iframe
+        width="100%"
+        height="200"
+        src="https://www.youtube.com/embed/ScMzIvxBSi4"
+        title="Travel Vlog 2"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <p>【旅行 Vlog】山间漫步</p>
+    </div>
+    <!-- Vimeo 示例 -->
+    <div class="video-item">
+      <iframe
+        src="https://player.vimeo.com/video/357274789"
+        width="100%"
+        height="200"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <p>【旅行 短片】城市夜景纪实</p>
+    </div>
   </div>
 </section>
+
+<!-- —— 音乐播放器（已在 header 引入，无需额外插入） —— -->
+<!-- 只需确保 header 中有 {% include music_player.html %}，并且 assets/js/player.js 与 playlist.json 已配置好示例音乐链接。 -->
+
